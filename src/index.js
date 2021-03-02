@@ -7,8 +7,6 @@ const GameView = require("./game_view.js")
 
 window.MovingObject = MovingObject;
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("game-canvas")
     canvas.width = Game.DIM_X;

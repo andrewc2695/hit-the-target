@@ -1,6 +1,7 @@
 const MovingObject = require("./moving_object")
 class Game {
-    constructor(){
+    constructor(level){
+        this.level = level
         this.movingObject = []
     }
 
