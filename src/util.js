@@ -5,4 +5,4 @@ const Util = {
     }
 }
 
-module.exports = Utilgit 
+module.exports = Util

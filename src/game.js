@@ -51,20 +51,18 @@ class Game {
                 let obj = objects[i];
                 let objWidth = obj.width;
                 let objHeight = obj.height;
-                if(this.between(userPos[0], obj.pos[0], 
-                    obj.pos[0] + objWidth) && this.between(userPos[1], 
-                        obj.pos[1],
-                        obj.pos[1] + objHeight)){
-                            debugger
-                            return([true, objects[i]])
-                        }
+                if(this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
+                this.between(userPos[1], obj.pos[1],obj.pos[1] + objHeight)){
+                    this.userObject[0].vel = [0, 0]
+                    
+                }
             }
        };
        return false;
     }
 
     between(userPos, objectMin, objectMax){
-        return(userPos >= objectMin && userPos <= objectMax)
+        return(userPos >= (objectMin - 5) && userPos <= (objectMax + 2))
     }
 
     outOfBounds(){
