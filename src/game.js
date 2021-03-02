@@ -16,6 +16,10 @@ class Game {
         //     this.walls.push(new Wall(wall))
         // });
         this.userObject.push(new UserObject(this.level[this.currentLevel].userObject));
+        debugger
+        this.level[this.currentLevel].walls.forEach(wall => {
+            this.walls.push(new Wall(wall))
+        });
         // const uo = new UserObject({
         //     pos: [30, 30],
         //     vel: [ 1, 0],
@@ -33,7 +37,7 @@ class Game {
     }
 
     allObjects(){
-        return [].concat(this.userObject)
+        return [].concat(this.userObject, this.walls)
     }
 
     moveObject(){

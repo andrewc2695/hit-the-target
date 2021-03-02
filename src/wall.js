@@ -10,7 +10,7 @@ class Wall extends MovingObject {
     draw(ctx) {
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.rect(3, 3, 20, 60)
+        ctx.rect(this.pos[0], this.pos[1], 20, 60)
         ctx.fill();
     }
 
