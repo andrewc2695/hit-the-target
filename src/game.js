@@ -16,11 +16,20 @@ class Game {
         console.log("b4")
         this.movingObject.readPrompts(0);
         console.log("after")
+        this.gameOver = false;
         return mo
     }
 
     moveObject(){
-        this.movingObject.move()
+        this.movingObject.move();
+        console.log(this.movingObject.pos)
+    }
+
+    outOfBounds(){
+        let position = this.movingObject.pos;
+        if(Math.abs(position[0]) >= Game.DIM_X || Math.abs(position[1]) >= Game.DIM_Y){
+            return true;
+        }
     }
 
     draw(ctx) {

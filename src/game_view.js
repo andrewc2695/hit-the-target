@@ -9,11 +9,15 @@ class GameView{
 
     start(){
         this.game.addObject(this.prompts);
-        setInterval(() => {
+        const interval = setInterval(() => {
             this.game.draw(this.ctx);
             this.game.moveObject();
-        }, 25)
-    }
+            if(this.game.outOfBounds()){
+                clearInterval(interval);
+            };
+        }, 25);
+    };
+
 }
 
 module.exports = GameView;

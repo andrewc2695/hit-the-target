@@ -1,4 +1,5 @@
 console.log("webpack is working")
+//down 1000,right 1000,left 1000,up 1000,right 1000
 
 const MovingObject = require("./moving_object.js")
 const Game = require("./game.js")

@@ -21,31 +21,13 @@ class MovingObject {
             }else{
                 newVel = [0, 5];
             }
-        console.log(newVel);
         this.vel = newVel;
         if(n < this.prompts.length - 1){
             setTimeout(() => {
                 this.readPrompts(n + 1)
             }, parseInt(promptArr[1]));
-        }''
-        //     this.vel = newVel
-        // while( i < this.prompts.length){
-        //     let promptArr = this.prompts[i].split(" ");
-        //     let newVel = this.vel;
-        //     if(promptArr[0] === "left"){
-        //         newVel = [-1, 0];
-        //     }else if(promptArr[0] === "right"){
-        //         newVel = [1, 0];
-        //     }else if(promptArr[0] === "up"){
-        //         newVel = [0, 1];
-        //     }else{
-        //         newVel = [0, -1];
-        //     }
-        //     this.vel = newVel
-        //     setTimeout(() => {
-        //         i++
-        //     }, parseInt(promptArr[1]))   
-        // }
+        };
+        console.log(this.pos);
     }
 
     draw(ctx){
