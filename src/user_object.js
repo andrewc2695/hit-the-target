@@ -16,7 +16,6 @@ class UserObject extends MovingObject{
     }
 
     readPrompts(n, prompts) {
-        console.log(n)
         let promptArr = prompts[n].split(" ");
         let newVel = [];
         if (promptArr[0] === "left") {
@@ -34,7 +33,6 @@ class UserObject extends MovingObject{
                 this.readPrompts(n + 1, prompts)
             }, parseInt(promptArr[1]));
         };
-        console.log(this.pos);
     }
 
 }

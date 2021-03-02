@@ -6,7 +6,7 @@ const level = {
             radius: 5,
             color: "#FFFFFF",
         },
-        walls: [{ pos: [200, 200], vel: [0, 0], color: "#964B00"}]
+        walls: [{ pos: [200, 200], vel: [0, 0], color: "#964B00", height: 60, width: 20}]
     }
 }
 

@@ -1,4 +1,5 @@
-const Game = require('./game.js')
+const Game = require('./game.js');
+const Wall = require('./wall.js');
 class GameView{
     constructor(ctx, game, prompts){
         this.ctx = ctx;
@@ -15,6 +16,12 @@ class GameView{
             if(this.game.outOfBounds()){
                 clearInterval(interval);
             };
+            const collision = this.game.checkCollisions()
+            if (collision){
+                if(collision[1] instanceof Wall){
+                    this.game.userObject[0].vel = [0, 0]
+                }
+            }
         }, 25);
     };
 
