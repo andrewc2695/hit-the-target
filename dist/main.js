@@ -15,7 +15,7 @@
   \*********************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\")\nclass Game {\n    constructor(level){\n        this.level = level\n        this.movingObject = []\n    }\n\n    addObject(prompts){\n        const mo = new MovingObject({\n            pos: [30, 30],\n            vel: [ 1, 0],\n            radius: 5,\n            color: \"#FFFFFF\",\n            prompts: prompts,\n        });\n        this.movingObject = mo\n        console.log(\"b4\")\n        this.movingObject.readPrompts(0);\n        console.log(\"after\")\n        this.gameOver = false;\n        return mo\n    }\n\n    moveObject(){\n        this.movingObject.move();\n        console.log(this.movingObject.pos)\n    }\n\n    outOfBounds(){\n        let position = this.movingObject.pos;\n        if(Math.abs(position[0]) >= Game.DIM_X || Math.abs(position[1]) >= Game.DIM_Y){\n            return true;\n        }\n    }\n\n    draw(ctx) {\n        ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);\n        ctx.fillStyle = Game.BG_COLOR;\n        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);\n        this.movingObject.draw(ctx);\n    };\n}\n\nGame.BG_COLOR = \"#000000\";\nGame.DIM_X = 1000;\nGame.DIM_Y = 600;\nGame.FPS = 32;\n\n\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("const MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\")\nconst UserObject = __webpack_require__(/*! ./user_object */ \"./src/user_object.js\")\nconst Wall = __webpack_require__(/*! ./wall */ \"./src/wall.js\")\nconst levels = __webpack_require__(/*! ./level */ \"./src/level.js\")\n\nclass Game {\n    constructor(){\n        this.walls = []\n        this.userObject = []\n        this.level = levels\n        this.currentLevel = 1\n    }\n    \n    addObject(prompts){\n        // this.level.walls.forEach( wall => {\n        //     this.walls.push(new Wall(wall))\n        // });\n        this.userObject.push(new UserObject(this.level[this.currentLevel].userObject));\n        // const uo = new UserObject({\n        //     pos: [30, 30],\n        //     vel: [ 1, 0],\n        //     radius: 5,\n        //     color: \"#FFFFFF\",\n        //     prompts: prompts,\n        // });\n        // this.userObject = uo\n        // console.log(\"b4\")\n        // debugger\n        this.userObject[0].readPrompts(0, prompts);\n        // console.log(\"after\")\n        // this.gameOver = false;\n        // return uo\n    }\n\n    allObjects(){\n        return [].concat(this.userObject)\n    }\n\n    moveObject(){\n        this.allObjects().forEach(object => {\n            object.move();\n        })\n    }\n\n    outOfBounds(){\n        let position = this.userObject[0].pos;\n        if(Math.abs(position[0]) >= Game.DIM_X || Math.abs(position[1]) >= Game.DIM_Y){\n            return true;\n        }\n    }\n\n    draw(ctx) {\n        ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);\n        ctx.fillStyle = Game.BG_COLOR;\n        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);\n        this.allObjects().forEach((object) => {\n            object.draw(ctx);\n        });\n    };\n}\n\nGame.BG_COLOR = \"#000000\";\nGame.DIM_X = 1000;\nGame.DIM_Y = 600;\nGame.FPS = 32;\n\n\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -39,13 +39,53 @@ eval("console.log(\"webpack is working\")\n//down 1000,right 1000,left 1000,up 1
 
 /***/ }),
 
+/***/ "./src/level.js":
+/*!**********************!*\
+  !*** ./src/level.js ***!
+  \**********************/
+/***/ ((module) => {
+
+eval("const level = {\n    1: {\n        userObject: {\n            pos: [30, 30],\n            vel: [ 1, 0],\n            radius: 5,\n            color: \"#FFFFFF\",\n        }\n    }\n}\n\nmodule.exports = level;\n\n//# sourceURL=webpack:///./src/level.js?");
+
+/***/ }),
+
 /***/ "./src/moving_object.js":
 /*!******************************!*\
   !*** ./src/moving_object.js ***!
   \******************************/
 /***/ ((module) => {
 
-eval("\nclass MovingObject {\n    constructor(variables){\n        this.pos = variables.pos;\n        this.vel = variables.vel;\n        this.radius = variables.radius;\n        this.color = variables.color;\n        this.prompts = variables.prompts;\n    }\n\n    readPrompts(n){\n        console.log(n)\n        let promptArr = this.prompts[n].split(\" \");\n        let newVel = [];\n        if (promptArr[0] === \"left\") {\n                newVel = [-5, 0];\n            }else if(promptArr[0] === \"right\"){\n                newVel = [5, 0];\n            }else if(promptArr[0] === \"up\"){\n                newVel = [0, -5];\n            }else{\n                newVel = [0, 5];\n            }\n        this.vel = newVel;\n        if(n < this.prompts.length - 1){\n            setTimeout(() => {\n                this.readPrompts(n + 1)\n            }, parseInt(promptArr[1]));\n        };\n        console.log(this.pos);\n    }\n\n    draw(ctx){\n        ctx.fillStyle = this.color;\n        ctx.beginPath();\n        ctx.arc(\n            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true\n        );\n        ctx.fill();\n    }\n\n    move(){\n        this.pos[0] = this.pos[0] + this.vel[0]\n        this.pos[1] = this.pos[1] + this.vel[1]\n    }\n\n\n}\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+eval("\nclass MovingObject {\n    constructor(variables){\n        this.pos = variables.pos;\n        this.vel = variables.vel;\n        this.radius = variables.radius;\n        this.color = variables.color;\n    }\n\n\n    move(){\n        this.pos[0] = this.pos[0] + this.vel[0]\n        this.pos[1] = this.pos[1] + this.vel[1]\n    }\n\n\n}\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+
+/***/ }),
+
+/***/ "./src/user_object.js":
+/*!****************************!*\
+  !*** ./src/user_object.js ***!
+  \****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\")\nconst Util = __webpack_require__(/*! ./util.js */ \"./src/util.js\");\n\nclass UserObject extends MovingObject{\n    constructor(variables){\n        super(variables);\n    }\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n        ctx.beginPath();\n        ctx.arc(\n            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true\n        );\n        ctx.fill();\n    }\n\n    readPrompts(n, prompts) {\n        console.log(n)\n        let promptArr = prompts[n].split(\" \");\n        let newVel = [];\n        if (promptArr[0] === \"left\") {\n            newVel = [-5, 0];\n        } else if (promptArr[0] === \"right\") {\n            newVel = [5, 0];\n        } else if (promptArr[0] === \"up\") {\n            newVel = [0, -5];\n        } else {\n            newVel = [0, 5];\n        }\n        this.vel = newVel;\n        if (n < prompts.length - 1) {\n            setTimeout(() => {\n                this.readPrompts(n + 1, prompts)\n            }, parseInt(promptArr[1]));\n        };\n        console.log(this.pos);\n    }\n\n}\n\nmodule.exports = UserObject;\n\n//# sourceURL=webpack:///./src/user_object.js?");
+
+/***/ }),
+
+/***/ "./src/util.js":
+/*!*********************!*\
+  !*** ./src/util.js ***!
+  \*********************/
+/***/ ((module) => {
+
+eval("const Util = {\n    inherits(ChildClass, ParentClass) {\n        ChildClass.prototype = Object.create(ParentClass.prototype);\n        ChildClass.prototype.constructor = ChildClass;\n    }\n}\n\nmodule.exports = Util\n\n//# sourceURL=webpack:///./src/util.js?");
+
+/***/ }),
+
+/***/ "./src/wall.js":
+/*!*********************!*\
+  !*** ./src/wall.js ***!
+  \*********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\")\nconst Util = __webpack_require__(/*! ./util.js */ \"./src/util.js\");\n\nclass Wall extends MovingObject {\n    constructor(variables) {\n        super(variables)\n\n    }\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n        ctx.beginPath();\n        ctx.rect(3, 3, 20, 60)\n        ctx.fill();\n    }\n\n}\n\nmodule.exports = Wall;\n\n//# sourceURL=webpack:///./src/wall.js?");
 
 /***/ })
 

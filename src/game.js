@@ -1,33 +1,49 @@
 const MovingObject = require("./moving_object")
+const UserObject = require("./user_object")
+const Wall = require("./wall")
+const levels = require("./level")
+
 class Game {
-    constructor(level){
-        this.level = level
-        this.movingObject = []
+    constructor(){
+        this.walls = []
+        this.userObject = []
+        this.level = levels
+        this.currentLevel = 1
+    }
+    
+    addObject(prompts){
+        // this.level.walls.forEach( wall => {
+        //     this.walls.push(new Wall(wall))
+        // });
+        this.userObject.push(new UserObject(this.level[this.currentLevel].userObject));
+        // const uo = new UserObject({
+        //     pos: [30, 30],
+        //     vel: [ 1, 0],
+        //     radius: 5,
+        //     color: "#FFFFFF",
+        //     prompts: prompts,
+        // });
+        // this.userObject = uo
+        // console.log("b4")
+        // debugger
+        this.userObject[0].readPrompts(0, prompts);
+        // console.log("after")
+        // this.gameOver = false;
+        // return uo
     }
 
-    addObject(prompts){
-        const mo = new MovingObject({
-            pos: [30, 30],
-            vel: [ 1, 0],
-            radius: 5,
-            color: "#FFFFFF",
-            prompts: prompts,
-        });
-        this.movingObject = mo
-        console.log("b4")
-        this.movingObject.readPrompts(0);
-        console.log("after")
-        this.gameOver = false;
-        return mo
+    allObjects(){
+        return [].concat(this.userObject)
     }
 
     moveObject(){
-        this.movingObject.move();
-        console.log(this.movingObject.pos)
+        this.allObjects().forEach(object => {
+            object.move();
+        })
     }
 
     outOfBounds(){
-        let position = this.movingObject.pos;
+        let position = this.userObject[0].pos;
         if(Math.abs(position[0]) >= Game.DIM_X || Math.abs(position[1]) >= Game.DIM_Y){
             return true;
         }
@@ -37,7 +53,9 @@ class Game {
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = Game.BG_COLOR;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        this.movingObject.draw(ctx);
+        this.allObjects().forEach((object) => {
+            object.draw(ctx);
+        });
     };
 }
 
