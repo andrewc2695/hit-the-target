@@ -45,7 +45,7 @@ class Game {
     checkCollisions(){
        const objects = this.allObjects().slice(1)
        let userPos = this.userObject[0].pos
-       console.log(userPos);
+    //    console.log(userPos);
        for(let i = 0; i < objects.length; i++){
             if(objects[i] instanceof Wall){
                 let obj = objects[i];
@@ -53,8 +53,17 @@ class Game {
                 let objHeight = obj.height;
                 if(this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
                 this.between(userPos[1], obj.pos[1],obj.pos[1] + objHeight)){
-                    this.userObject[0].vel = [0, 0]
-                    
+                    let vel = this.userObject[0].vel
+                    if(vel[0] > 0){
+                        this.userObject[0].pos[0] = userPos[0] - 1;
+                    }else if(vel[0] < 0){
+                        this.userObject[0].pos[0] = userPos[0] + 1;
+                    }else if(vel[1] > 0){
+                        this.userObject[0].pos[1] = userPos[1] - 1;
+                    }else if(vel[1] < 0){
+                        this.userObject[0].pos[1] = userPos[1] + 1;
+                    }
+                    this.userObject[0].vel = [0, 0];
                 }
             }
        };
@@ -62,7 +71,7 @@ class Game {
     }
 
     between(userPos, objectMin, objectMax){
-        return(userPos >= (objectMin - 5) && userPos <= (objectMax + 2))
+        return(userPos >= (objectMin - 5) && userPos <= (objectMax + 5))
     }
 
     outOfBounds(){
