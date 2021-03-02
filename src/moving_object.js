@@ -3,7 +3,7 @@ class MovingObject {
         this.pos = variables.pos;
         this.vel = variables.vel;
         this.radius = variables.radius;
-        this.color = variables.colo;
+        this.color = variables.color;
     }
 
     draw(ctx){
@@ -13,6 +13,7 @@ class MovingObject {
             this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
         );
         ctx.fill();
+        console.log("hi")
     }
 
     move(){
