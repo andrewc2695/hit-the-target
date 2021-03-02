@@ -4,14 +4,18 @@ class Game {
         this.movingObject = []
     }
 
-    addObject(){
+    addObject(prompts){
         const mo = new MovingObject({
             pos: [30, 30],
             vel: [ 1, 0],
             radius: 5,
-            color: "#FFFFFF"
+            color: "#FFFFFF",
+            prompts: prompts,
         });
         this.movingObject = mo
+        console.log("b4")
+        this.movingObject.readPrompts(0);
+        console.log("after")
         return mo
     }
 
@@ -20,7 +24,6 @@ class Game {
     }
 
     draw(ctx) {
-        console.log(this.movingObject);
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = Game.BG_COLOR;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);

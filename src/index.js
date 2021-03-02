@@ -14,5 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = Game.DIM_Y;
     const ctx = canvas.getContext("2d")
     const game = new Game();
-    new GameView(ctx, game).start();
+    let prompts = window.prompt();
+    prompts = prompts.split(",")
+    new GameView(ctx, game, prompts).start();
 })
