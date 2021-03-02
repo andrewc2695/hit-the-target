@@ -49,11 +49,11 @@ class Game {
        for(let i = 0; i < objects.length; i++){
             if(objects[i] instanceof Wall){
                 let obj = objects[i];
-                let objWidth = obj.width/2;
-                let objHeight = obj.height/2;
-                if(this.between(userPos[0], obj.pos[0] - objWidth, 
+                let objWidth = obj.width;
+                let objHeight = obj.height;
+                if(this.between(userPos[0], obj.pos[0], 
                     obj.pos[0] + objWidth) && this.between(userPos[1], 
-                        obj.pos[1] - objHeight,
+                        obj.pos[1],
                         obj.pos[1] + objHeight)){
                             debugger
                             return([true, objects[i]])
