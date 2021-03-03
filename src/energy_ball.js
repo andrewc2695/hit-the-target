@@ -1,8 +1,8 @@
 const MovingObject = require("./moving_object");
 
 class EnergyBall extends MovingObject{
-    constructor(variabkes){
-        super(variabkes)
+    constructor(variables){
+        super(variables)
         this.eng1 = new Image();
         this.eng1.src = "../img/energy1.png"
         this.eng2 = new Image();

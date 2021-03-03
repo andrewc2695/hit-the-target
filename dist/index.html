@@ -9,10 +9,18 @@
 </head>
 <body>
     <div class="game-window">
-        <input id="user-input" type="text">
-        <button id="user-input-button">click me</button>
-        <canvas id="score"></canvas>
-        <canvas id="game-canvas"></canvas>
+        <div id="top">
+            <canvas id="score"></canvas>
+        </div>
+        <div id="bottom">
+            <div>
+                <label>Direction:
+                    <input id="user-input" type="text">
+                </label>
+                <button id="user-input-button">click me</button>
+            </div>
+            <canvas id="game-canvas"></canvas>
+        </div>
     </div>
 </body>
 </html>

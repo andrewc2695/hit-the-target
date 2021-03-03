@@ -14,15 +14,12 @@ class GameView{
     }
 
     start(){
+        if(this.scoreInterval) clearInterval(this.scoreInterval);
         this.score = 0;
         this.gameState = true;
         this.scoreInterval = setInterval(() => {
-            if (this.gameState === true){
                 this.score += 5
                 this.drawScore();
-            }else{
-                clearInterval(this.scoreInterval);
-            }
         }, 100)
         this.game.reset(this.ctx);
         this.game.addObject(this.prompts);
