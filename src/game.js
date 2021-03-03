@@ -4,15 +4,17 @@ const Wall = require("./wall")
 const levels = require("./level")
 const Goal = require("./goal")
 const EnergyBall = require("./energy_ball")
+const Coin = require("./coin")
 
 class Game {
     constructor(){
-        this.walls = []
-        this.userObject = []
+        this.walls = [];
+        this.userObject = [];
         this.energyBalls = [];
-        this.goal = []
-        this.currentLevel = 1
-        this.level = levels
+        this.goal = [];
+        this.coins = [];
+        this.currentLevel = 1;
+        this.level = levels;
     }
     
     reset(ctx){
@@ -20,6 +22,7 @@ class Game {
         this.userObject = [];
         this.energyBalls = [];
         this.goal = [];
+        this.coins = [];
     }
 
     addObject(prompts){
@@ -32,7 +35,10 @@ class Game {
             this.walls.push(new Wall(wall));
         });
         this.level[this.currentLevel].energyBalls.forEach(eb => {
-            this.walls.push(new EnergyBall(eb));
+            this.energyBalls.push(new EnergyBall(eb));
+        });
+        this.level[this.currentLevel].coins.forEach(coin => {
+            this.coins.push(new Coin(coin));
         });
         this.goal.push(new Goal(this.level[this.currentLevel].goal));
         // const uo = new UserObject({
@@ -46,10 +52,11 @@ class Game {
         this.userObject[0].readPrompts(0, prompts);
         // this.gameOver = false;
         // return uo
+        console.log(this.coins);
     }
 
     allObjects(){
-        return [].concat(this.userObject, this.walls, this.goal, this.energyBalls);
+        return [].concat(this.userObject, this.walls, this.goal, this.energyBalls, this.coins);
     }
 
     moveObject(){
@@ -92,6 +99,15 @@ class Game {
                 let dist = Math.sqrt(Math.pow(userPos[0] - obj.pos[0], 2) + Math.pow(userPos[1] - obj.pos[1], 2));
                 if (dist < (userObj.radius + obj.radius)){
                     return([true, "lost"]);
+                }
+            }else if(objects[i] instanceof Coin){
+                let objWidth = obj.width;
+                let objHeight = obj.height;
+                if (this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
+                    this.betweenHeight(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
+                    objects[i].pos = [2000, 2000];
+                    objects[i].vel = [0, 0];
+                    return [true, "coin"];
                 }
             }
        };

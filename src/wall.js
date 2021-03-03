@@ -4,8 +4,7 @@ const Util = require("./util.js");
 class Wall extends MovingObject {
     constructor(variables) {
         super(variables)
-        this.height = variables.height;
-        this.width = variables.width;
+        
     }
 
     draw(ctx) {

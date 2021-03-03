@@ -26,7 +26,6 @@ class GameView{
         }, 100)
         this.game.reset(this.ctx);
         this.game.addObject(this.prompts);
-        // if(interval !== undefined) console.log(true);
         this.interval = setInterval(() => {
             console.log(this.score);
             this.game.draw(this.ctx);
@@ -37,8 +36,12 @@ class GameView{
             };
             const collision = this.game.checkCollisions()
             if (collision){
-                    clearInterval(this.interval);
-                    this.gameWon(collision[1]);
+                    if(collision[1] === "coin"){
+                        this.score += 1000
+                    }else{
+                        clearInterval(this.interval);
+                        this.gameWon(collision[1]);
+                    }
                 }
         }, 25);
     };
