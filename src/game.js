@@ -99,7 +99,7 @@ class Game {
     }
 
     between(userPos, objectMin, objectMax){
-        return(userPos >= (objectMin - 5) && userPos <= (objectMax + 5))
+        return(userPos >= (objectMin - 50) && userPos <= (objectMax + 50))
     }
 
     outOfBounds(){
