@@ -44,7 +44,10 @@ class GameView{
         }
     }
 
-    
+    getUserInput(){
+        var input = document.getElementById("user-input");
+        console.log(input.value);
+    }
 }
 
 

@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = Game.DIM_Y;
     const ctx = canvas.getContext("2d")
     const game = new Game();
-    let prompts = window.prompt();
-    prompts = prompts.split(",")
+    // let prompts = window.prompt();
+    // prompts = prompts.split(",")
+    let prompts = [""];
     const gv = new GameView(ctx, game, prompts);
-    document.getElementById("user-input-button").addEventListener("click", () => console.log("hi"))
+    document.getElementById("user-input-button").addEventListener("click", () => gv.getUserInput())
     gv.start();
 })
