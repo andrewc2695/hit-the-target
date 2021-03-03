@@ -4,10 +4,14 @@ const Util = require("./util.js");
 class UserObject extends MovingObject{
     constructor(variables){
         super(variables);
-        this.img = new Image();
-        this.img.src = "../img/robot1.png";
-
-
+        this.img1 = new Image();
+        this.img1.src = "../img/robot1.png";
+        this.img2 = new Image();
+        this.img2.src = "../img/robot2.png";
+        this.currentImg = this.img1;
+        setInterval(() => {
+            this.currentImg === this.img1 ? this.currentImg = this.img2 : this.currentImg = this.img1
+        }, 200)
     }
 
     draw(ctx) {
@@ -19,7 +23,7 @@ class UserObject extends MovingObject{
         // let img = new Image();
         // img.src = "../img/robot1.png";
         // img.onload = function(){
-        ctx.drawImage(this.img, this.pos[0], this.pos[1], 55, 70)
+        ctx.drawImage(this.currentImg, this.pos[0], this.pos[1], 55, 70)
         // }
     }
 
