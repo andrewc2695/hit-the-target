@@ -12,15 +12,50 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = Game.DIM_X;
     canvas.height = Game.DIM_Y;
     const ctx = canvas.getContext("2d")
+
     const game = new Game();
+
     const scoreCanvas = document.getElementById("score")
     const scoreCtx = scoreCanvas.getContext("2d")
     scoreCanvas.width = 200;
     scoreCanvas.height = 100;
-    // let prompts = window.prompt();
-    // prompts = prompts.split(",")
-    // let prompts = [""];
+
     const gv = new GameView(ctx, game, scoreCtx);
-    document.getElementById("user-input-button").addEventListener("click", () => gv.getUserInput());
-    // gv.start();
-})
+
+    const inputList = document.getElementById("inputs");
+
+    let input = "";
+    let inputArr = [];
+
+    const up = document.getElementById("up")
+    up.addEventListener("click", () => handleClick(up, "up"));
+    const down = document.getElementById("down")
+    down.addEventListener("click", () => handleClick(down, "down"));
+    const left = document.getElementById("left")
+    left.addEventListener("click", () => handleClick(left, "left"));
+    const right = document.getElementById("right")
+    right.addEventListener("click", () => handleClick(right, "right"));
+
+    document.getElementById("user-input-button").addEventListener("click", () => addLi(input));
+
+    document.getElementById("start").addEventListener("click", () => gv.getUserInput(inputArr))
+
+    addLi = (ele) => {
+        let time = document.getElementById("time");
+        let li = document.createElement("li");
+        let subArr = [ele, time.value]
+        inputArr.push(subArr);
+        li.appendChild(document.createTextNode(`${ele}, ${time.value}`))
+        inputList.appendChild(li)
+        console.log(inputArr);
+    }
+
+    handleClick = (dir, str) => {
+        up.style.borderColor = "black"
+        down.style.borderColor = "black"
+        left.style.borderColor = "black"
+        right.style.borderColor = "black"
+        dir.style.borderColor = "blue";
+        input = str;
+    }
+});

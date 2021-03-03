@@ -60,9 +60,10 @@ class GameView{
         }
     }
 
-    getUserInput(){
-        var input = document.getElementById("user-input");
-        this.prompts = input.value.split(",")
+    getUserInput(prompts){
+        // var input = document.getElementById("user-input");
+        // this.prompts = input.value.split(",")
+        this.prompts = prompts;
         if(this.interval !== undefined){
             clearInterval(this.interval);
         }

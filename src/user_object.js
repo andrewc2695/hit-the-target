@@ -28,7 +28,8 @@ class UserObject extends MovingObject{
     }
 
     readPrompts(n, prompts) {
-        let promptArr = prompts[n].split(" ");
+        debugger
+        let promptArr = prompts[n]
         let newVel = [];
         if (promptArr[0] === "left") {
             newVel = [-5, 0];
