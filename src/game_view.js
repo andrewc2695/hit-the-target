@@ -55,6 +55,7 @@ class GameView{
         if(state === "won"){
             ctx.fillText("Level Completed!", Game.DIM_X / 2, Game.DIM_Y / 2);
         }else{
+            clearInterval(this.scoreInterval)
             ctx.fillText("Level Failed!", Game.DIM_X / 2, Game.DIM_Y / 2);
         }
     }
