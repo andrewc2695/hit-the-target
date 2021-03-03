@@ -38,6 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("user-input-button").addEventListener("click", () => addLi(input));
 
+    document.getElementById("clear-all").addEventListener("click", () => clearAll());
+
+    document.getElementById("remove-last").addEventListener("click", () => removeLast());
+
     document.getElementById("start").addEventListener("click", () => gv.getUserInput(inputArr))
 
     addLi = (ele) => {
@@ -57,6 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
         right.style.borderColor = "black"
         dir.style.borderColor = "blue";
         input = str;
+    }
+
+    clearAll = () => {
+        inputList.innerHTML = "";
+        inputArr = [];
+    }
+
+    removeLast = () => {
+        inputList.removeChild(inputList.childNodes[inputArr.length -1]);
+        inputArr.pop();
+        console.log(inputArr);
     }
 
 });
