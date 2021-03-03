@@ -15,6 +15,8 @@ class Game {
         this.coins = [];
         this.currentLevel = 1;
         this.level = levels;
+        this.bgImage = new Image();
+        this.bgImage.src = "../img/floor.png";
     }
     
     reset(ctx){
@@ -134,9 +136,10 @@ class Game {
     }
 
     draw(ctx) {
-        ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        ctx.fillStyle = Game.BG_COLOR;
-        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+        // ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+        // ctx.fillStyle = Game.BG_COLOR;
+        // ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+        ctx.drawImage(this.bgImage, 0, 0, Game.DIM_X, Game.DIM_Y)
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });

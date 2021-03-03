@@ -5,13 +5,12 @@ class Goal extends MovingObject{
         super(variables)
         this.height = variables.height;
         this.width = variables.width;
+        this.img = new Image();
+        this.img.src ="../img/rocket.png"
     }
 
     draw(ctx) {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.rect(this.pos[0], this.pos[1], this.width, this.height)
-        ctx.fill();
+        ctx.drawImage(this.img, this.pos[0], this.pos[1])
     }
 }
 
