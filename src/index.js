@@ -13,10 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = Game.DIM_Y;
     const ctx = canvas.getContext("2d")
     const game = new Game();
+    const scoreCanvas = document.getElementById("score")
+    const scoreCtx = scoreCanvas.getContext("2d")
+    scoreCanvas.width = 200;
+    scoreCanvas.height = 100;
     // let prompts = window.prompt();
     // prompts = prompts.split(",")
     // let prompts = [""];
-    const gv = new GameView(ctx, game);
+    const gv = new GameView(ctx, game, scoreCtx);
     document.getElementById("user-input-button").addEventListener("click", () => gv.getUserInput());
     // gv.start();
 })
