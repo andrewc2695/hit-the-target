@@ -80,6 +80,8 @@ class GameView{
         ctx.textAlign = "center";
         ctx.fillText(this.score, 100, 75)
     }
+
+
 }
 
 

@@ -58,4 +58,5 @@ document.addEventListener("DOMContentLoaded", () => {
         dir.style.borderColor = "blue";
         input = str;
     }
+
 });
