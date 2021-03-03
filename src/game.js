@@ -3,11 +3,13 @@ const UserObject = require("./user_object")
 const Wall = require("./wall")
 const levels = require("./level")
 const Goal = require("./goal")
+const EnergyBall = require("./energy_ball")
 
 class Game {
     constructor(){
         this.walls = []
         this.userObject = []
+        this.energyBalls = [];
         this.goal = []
         this.currentLevel = 1
         this.level = levels
@@ -16,8 +18,8 @@ class Game {
     reset(ctx){
         this.walls = [];
         this.userObject = [];
+        this.energyBalls = [];
         this.goal = [];
-        levels[1].userObject.pos = levels.backup1.userObject.pos
     }
 
     addObject(prompts){
@@ -28,6 +30,9 @@ class Game {
         this.userObject.push(a);
         this.level[this.currentLevel].walls.forEach(wall => {
             this.walls.push(new Wall(wall));
+        });
+        this.level[this.currentLevel].energyBalls.forEach(eb => {
+            this.walls.push(new EnergyBall(eb));
         });
         this.goal.push(new Goal(this.level[this.currentLevel].goal));
         // const uo = new UserObject({
@@ -44,7 +49,7 @@ class Game {
     }
 
     allObjects(){
-        return [].concat(this.userObject, this.walls, this.goal)
+        return [].concat(this.userObject, this.walls, this.goal, this.energyBalls);
     }
 
     moveObject(){
@@ -80,8 +85,14 @@ class Game {
                 let objHeight = obj.height;
                 if (this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
                     this.between(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
-                        return[true, "goal"];
+                        return[true, "won"];
                     }
+            }else if(objects[i] instanceof EnergyBall){
+                let userObj = this.userObject[0];
+                let dist = Math.sqrt(Math.pow(userPos[0] - obj.pos[0], 2) + Math.pow(userPos[1] - obj.pos[1], 2));
+                if (dist < (userObj.radius + obj.radius)){
+                    return([true, "lost"]);
+                }
             }
        };
        return false;

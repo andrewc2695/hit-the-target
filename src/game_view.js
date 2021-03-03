@@ -20,15 +20,12 @@ class GameView{
             if(this.game.outOfBounds()){
                 clearInterval(this.interval);
                 this.gameWon("lost");
-
             };
             const collision = this.game.checkCollisions()
             if (collision){
-                if(collision[1] === "goal"){
                     clearInterval(this.interval);
-                    this.gameWon("won");
+                    this.gameWon(collision[1]);
                 }
-            }
         }, 25);
     };
 
