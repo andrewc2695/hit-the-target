@@ -66,8 +66,8 @@ class Game {
             if(objects[i] instanceof Wall){
                 let objWidth = obj.width;
                 let objHeight = obj.height;
-                if(this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
-                this.between(userPos[1], obj.pos[1],obj.pos[1] + objHeight)){
+                if(this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
+                this.betweenHeight(userPos[1], obj.pos[1],obj.pos[1] + objHeight)){
                     let vel = this.userObject[0].vel
                     if(vel[0] > 0){
                         this.userObject[0].pos[0] = userPos[0] - 1;
@@ -83,8 +83,8 @@ class Game {
             }else if(objects[i] instanceof Goal){
                 let objWidth = obj.width;
                 let objHeight = obj.height;
-                if (this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
-                    this.between(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
+                if (this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
+                    this.betweenHeight(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
                         return[true, "won"];
                     }
             }else if(objects[i] instanceof EnergyBall){
@@ -98,8 +98,12 @@ class Game {
        return false;
     }
 
-    between(userPos, objectMin, objectMax){
-        return(userPos >= (objectMin - 50) && userPos <= (objectMax + 50))
+    betweenWidth(userPos, objectMin, objectMax){
+        return(userPos >= (objectMin - 45) && userPos <= (objectMax - 10))
+    }
+
+    betweenHeight(userPos, objectMin, objectMax) {
+        return (userPos >= (objectMin - 70) && userPos <= (objectMax - 10))
     }
 
     outOfBounds(){
