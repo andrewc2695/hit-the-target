@@ -15,5 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const game = new Game();
     let prompts = window.prompt();
     prompts = prompts.split(",")
-    new GameView(ctx, game, prompts).start();
+    const gv = new GameView(ctx, game, prompts);
+    document.getElementById("user-input-button").addEventListener("click", () => console.log("hi"))
+    gv.start();
 })

@@ -2,11 +2,13 @@ const MovingObject = require("./moving_object")
 const UserObject = require("./user_object")
 const Wall = require("./wall")
 const levels = require("./level")
+const Goal = require("./goal")
 
 class Game {
     constructor(){
         this.walls = []
         this.userObject = []
+        this.goal = []
         this.level = levels
         this.currentLevel = 1
     }
@@ -17,8 +19,9 @@ class Game {
         // });
         this.userObject.push(new UserObject(this.level[this.currentLevel].userObject));
         this.level[this.currentLevel].walls.forEach(wall => {
-            this.walls.push(new Wall(wall))
+            this.walls.push(new Wall(wall));
         });
+        this.goal.push(new Goal(this.level[this.currentLevel].goal));
         // const uo = new UserObject({
         //     pos: [30, 30],
         //     vel: [ 1, 0],
@@ -33,7 +36,7 @@ class Game {
     }
 
     allObjects(){
-        return [].concat(this.userObject, this.walls)
+        return [].concat(this.userObject, this.walls, this.goal)
     }
 
     moveObject(){
@@ -45,10 +48,9 @@ class Game {
     checkCollisions(){
        const objects = this.allObjects().slice(1)
        let userPos = this.userObject[0].pos
-    //    console.log(userPos);
        for(let i = 0; i < objects.length; i++){
+           let obj = objects[i];
             if(objects[i] instanceof Wall){
-                let obj = objects[i];
                 let objWidth = obj.width;
                 let objHeight = obj.height;
                 if(this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
@@ -65,6 +67,13 @@ class Game {
                     }
                     this.userObject[0].vel = [0, 0];
                 }
+            }else if(objects[i] instanceof Goal){
+                let objWidth = obj.width;
+                let objHeight = obj.height;
+                if (this.between(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
+                    this.between(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
+                        return[true, "goal"];
+                    }
             }
        };
        return false;
