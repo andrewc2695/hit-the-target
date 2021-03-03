@@ -1,8 +1,12 @@
 
 class MovingObject {
     constructor(variables){
-        this.pos = variables.pos;
-        this.vel = variables.vel;
+        this.pos = [];
+        this.pos.push(variables.pos[0]);
+        this.pos.push(variables.pos[1]);
+        this.vel = [];
+        this.vel.push(variables.vel[0])
+        this.vel.push(variables.vel[1])
         this.radius = variables.radius;
         this.color = variables.color;
     }

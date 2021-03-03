@@ -9,15 +9,23 @@ class Game {
         this.walls = []
         this.userObject = []
         this.goal = []
-        this.level = levels
         this.currentLevel = 1
+        this.level = levels
     }
     
+    reset(ctx){
+        this.walls = [];
+        this.userObject = [];
+        this.goal = [];
+        levels[1].userObject.pos = levels.backup1.userObject.pos
+    }
+
     addObject(prompts){
         // this.level.walls.forEach( wall => {
         //     this.walls.push(new Wall(wall))
         // });
-        this.userObject.push(new UserObject(this.level[this.currentLevel].userObject));
+        let a = new UserObject(this.level[this.currentLevel].userObject)
+        this.userObject.push(a);
         this.level[this.currentLevel].walls.forEach(wall => {
             this.walls.push(new Wall(wall));
         });

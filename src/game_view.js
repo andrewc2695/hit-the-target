@@ -6,23 +6,26 @@ class GameView{
         this.ctx = ctx;
         this.game = game;
         this.prompts = prompts;
-        // this.game = game;
+        this.gameState = false;
+        this.interval = undefined;
     }
 
     start(){
+        this.game.reset(this.ctx);
         this.game.addObject(this.prompts);
-        const interval = setInterval(() => {
+        // if(interval !== undefined) console.log(true);
+        this.interval = setInterval(() => {
             this.game.draw(this.ctx);
             this.game.moveObject();
             if(this.game.outOfBounds()){
-                clearInterval(interval);
+                clearInterval(this.interval);
                 this.gameWon("lost");
 
             };
             const collision = this.game.checkCollisions()
             if (collision){
                 if(collision[1] === "goal"){
-                    clearInterval(interval);
+                    clearInterval(this.interval);
                     this.gameWon("won");
                 }
             }
@@ -46,7 +49,11 @@ class GameView{
 
     getUserInput(){
         var input = document.getElementById("user-input");
-        console.log(input.value);
+        this.prompts = input.value.split(",")
+        if(this.interval !== undefined){
+            clearInterval(this.interval);
+        }
+        this.start();
     }
 }
 
