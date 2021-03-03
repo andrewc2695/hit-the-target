@@ -32,7 +32,7 @@ class EnergyBall extends MovingObject{
         //     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
         // );
         // ctx.fill();
-        ctx.drawImage(this.currentImg, this.pos[0], this.pos[1], 60, 60)
+        ctx.drawImage(this.currentImg, this.pos[0], this.pos[1], this.width, this.height);
     }
 }
 

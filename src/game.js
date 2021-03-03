@@ -95,9 +95,10 @@ class Game {
                         return[true, "won"];
                     }
             }else if(objects[i] instanceof EnergyBall){
-                let userObj = this.userObject[0];
-                let dist = Math.sqrt(Math.pow(userPos[0] - obj.pos[0], 2) + Math.pow(userPos[1] - obj.pos[1], 2));
-                if (dist < (userObj.radius + obj.radius)){
+                let objWidth = obj.width;
+                let objHeight = obj.height;
+                if (this.betweenWidth(userPos[0], obj.pos[0] + 25, obj.pos[0] -25 + objWidth) &&
+                    this.betweenHeight(userPos[1], obj.pos[1] + 25, obj.pos[1] -25 + objHeight)) {
                     return([true, "lost"]);
                 }
             }else if(objects[i] instanceof Coin){
@@ -124,10 +125,10 @@ class Game {
 
     outOfBounds(){
         let position = this.userObject[0].pos;
-        if(position[0] >= Game.DIM_X || position[1] >= Game.DIM_Y){
+        if(position[0] >= Game.DIM_X || position[1] >= Game.DIM_Y - 60){
             return true;
         }
-        if(position[0] <= 0 || position[1] <= 0){
+        if (position[0] <= 0 || position[1] <= (0 - 15)){
             return true;
         }
     }
