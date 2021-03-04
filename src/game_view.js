@@ -20,6 +20,16 @@ class GameView{
         this.score = 0
         this.prompts = [];
         this.currentLevel = 1;
+        document.getElementById("instructions").addEventListener("click", () => this.changeId())
+        document.getElementsByClassName("modal")[0].addEventListener("click", () => this.changeId())
+    }
+
+    changeId(){
+        if (document.getElementById("modal-hidden")){
+            document.getElementById("modal-hidden").setAttribute("id", "modal-show");
+        }else{
+            document.getElementById("modal-show").setAttribute("id", "modal-hidden")
+        }
     }
 
     preview(){

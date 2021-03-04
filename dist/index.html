@@ -46,5 +46,33 @@
             <canvas id="game-canvas"></canvas>
         </div>
     </div>
+    <div id="modal-hidden" class="modal">
+        <div id="modal-content">
+            <div class="modal-div">
+                <img class="modal-pic" src="../img/robot1.png"/>
+                <p class="description">Use the robot controls on the left of the screen to input directions to the robot. 
+                    The directions control which way the robot will walk. The time controls how long 
+                    the robot will wait before executing the next action. If there is no next action 
+                    the robot will keep walking in the direction of the final action. Becareful not to touch
+                    the endges of the screen or you will lose the level!
+                </p>
+            </div>
+            <div class="modal-div">
+                <img class="modal-pic" id="rocket-pic" src="../img/rocket.png"/>
+                <p class="description">Make the Robot Touch the Rocket to beat
+                    the level!
+                </p>
+            </div>
+            <div class="modal-div">
+                <img src="../img/energy1.png" class="modal-pic">
+                <p class="description">Watch out! You'll lose if the robot touches
+                     an energy ball.</p>
+            </div>
+            <div class="modal-div">
+                <img class="modal-pic" src="../img/wall.png"/>
+                <p class="description">Walls are okay to touch, but they will stop the robot from moving.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
