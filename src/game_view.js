@@ -78,6 +78,8 @@ class GameView{
     };
 
     gameWon(state){
+        document.getElementById("inputs").innerHTML = "";
+        this.prompts = [];
         this.gameState = false;
         let ctx = this.ctx;
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
@@ -114,11 +116,14 @@ class GameView{
     }
 
     getUserInput(prompts){
-        this.prompts = prompts;
-        if(this.interval !== undefined){
-            clearInterval(this.interval);
+
+        if(prompts.length !== 0){
+            this.prompts = prompts;
+            if(this.interval !== undefined){
+                clearInterval(this.interval);
+            }
+            this.start();
         }
-        this.start();
     }
 
     drawTitle(){
