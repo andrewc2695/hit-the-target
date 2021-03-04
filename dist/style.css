@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    margin-right: 251px;
 }
 
 #top{
@@ -19,8 +20,10 @@
 }
 
 #top-right{
+    width: 500px;
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
 }
 
 #game-canvas{
@@ -73,7 +76,7 @@
     overflow: scroll;
 }
 
-#instructions{
+#instructions, #linkedin, #github{
     width: max-content;
     height: 50px;
 }

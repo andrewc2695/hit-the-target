@@ -83,8 +83,8 @@ class GameView{
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = Game.BG_COLOR;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        ctx.font = "30px Comic Sans MS";
-        ctx.fillStyle = "red";
+        ctx.font = "30px Copperplate";
+        ctx.fillStyle = "#54FADB";
         ctx.textAlign = "center";
         if(state === "won"){
             clearInterval(this.scoreInterval);
@@ -119,10 +119,11 @@ class GameView{
         ctx.clearRect(0, 0, 600, 1000);
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, 1000, 600);
-        ctx.font = "30px Comic Sans MS";
-        ctx.fillStyle = "red";
+        ctx.font = "30px Copperplate";
+        ctx.fillStyle = "#54FADB";
         ctx.textAlign = "center";
-        ctx.fillText("Hit The Target click to start", 500, 300);
+        ctx.fillText("Hit The Target", 500, 275);
+        ctx.fillText("Click to Start", 500, 325);
         this.drawScore()
     }
 
@@ -138,16 +139,15 @@ class GameView{
     }
 
     drawLevel(){
-        // console.log("hi")
         let ctx = this.ctx;
         ctx.clearRect(0, 0, 600, 1000);
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, 1000, 600);
         ctx.font = "30px Comic Sans MS";
-        ctx.fillStyle = "red";
-        ctx.textAlign = "center";
-        ctx.fillText(`Level ${this.currentLevel}`, 500, 150);
-        ctx.fillText(`${this.game.level[this.currentLevel].title}`, 500, 300);
+        ctx.font = "30px Copperplate";
+        ctx.fillStyle = "#54FADB";
+        ctx.fillText(`Level ${this.currentLevel}`, 500, 275);
+        ctx.fillText(`${this.game.level[this.currentLevel].title}`, 500, 325);
     }
 
 
