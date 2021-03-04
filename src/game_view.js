@@ -19,7 +19,7 @@ class GameView{
         this.scoreInterval = undefined
         this.score = 0
         this.prompts = [];
-        this.currentLevel = 1;
+        this.currentLevel = 2;
     }
 
     preview(){
