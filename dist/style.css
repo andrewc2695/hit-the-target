@@ -4,11 +4,26 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
+}
+
+#top{
+    width: 1000px;
 }
 
 #game-canvas{
     margin-left: auto;
     margin-right: auto;
+}
+
+#bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#bottom-left{
+    display: flex;
+    flex-direction: column;
 }

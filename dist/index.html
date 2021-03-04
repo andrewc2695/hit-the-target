@@ -13,7 +13,7 @@
             <canvas id="score"></canvas>
         </div>
         <div id="bottom">
-            <div>
+            <div id="bottom-left">
                 <label>Direction:
                     <button id="up" value="up">up</button>
                     <button id="down" value="down">down</button>
@@ -23,13 +23,17 @@
                 <label>Time
                     <input id="time" type="number" value="0">
                 </label>
-                <button id="user-input-button">Add Input</button>
+                <div>
+                    <button id="user-input-button">Add Input</button>
+                    <button id="clear-all">ClearAll Inputs</button>
+                    <button id="remove-last">Remove Last Input</button>
+                </div>
                 <ul id="inputs">
 
                 </ul>
-                <button id="clear-all">ClearAll Inputs</button>
-                <button id="remove-last">Remove Last Input</button>
-                <button id="start">Start!</button>
+                <div>
+                    <button id="start">Start!</button>
+                </div>
             </div>
             <canvas id="game-canvas"></canvas>
         </div>
