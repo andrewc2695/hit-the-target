@@ -72,6 +72,8 @@ class Game {
     }
 
     checkCollisions(){
+       if(this.userObject.length ===0) return
+       debugger;
        const objects = this.allObjects().slice(1)
        let userPos = this.userObject[0].pos
        for(let i = 0; i < objects.length; i++){

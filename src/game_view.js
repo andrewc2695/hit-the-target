@@ -15,9 +15,9 @@ class GameView{
         this.scoreCtx = scoreCtx;
         this.gameState = false;
         this.interval = undefined;
-        this.previewInterval = undefined
-        this.scoreInterval = undefined
-        this.score = 0
+        this.previewInterval = undefined;
+        this.scoreInterval = undefined;
+        this.score = 0;
         this.prompts = [];
         this.currentLevel = 1;
         document.getElementById("instructions").addEventListener("click", () => this.changeId())
@@ -83,12 +83,14 @@ class GameView{
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = Game.BG_COLOR;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        ctx.font = "30px Copperplate";
-        ctx.fillStyle = "#54FADB";
-        ctx.textAlign = "center";
+        // console.log(this.game.userObject)
+        // this.game.userObject[0].pos = [3000, 3000];
         if(state === "won"){
             clearInterval(this.scoreInterval);
             this.currentLevel++;
+            ctx.font = "30px Copperplate";
+            ctx.fillStyle = "#54FADB";
+            ctx.textAlign = "center";
             ctx.fillText("Level Completed!", Game.DIM_X / 2, Game.DIM_Y / 2);
             this.game.reset();
             setTimeout(() => {
@@ -98,13 +100,20 @@ class GameView{
         }else{
             clearInterval(this.scoreInterval);
             this.score = 0;
+            ctx.font = "30px Copperplate";
+            ctx.fillStyle = "#54FADB";
+            ctx.textAlign = "center";
             ctx.fillText("Level Failed!", Game.DIM_X / 2, Game.DIM_Y / 2);
+            this.currentLevel = 1;
+            this.game.reset();
+            setTimeout(() => {
+                this.ctx.clearRect(0, 0, 600, 1000);
+                this.preview()
+            }, 1500);
         }
     }
 
     getUserInput(prompts){
-        // var input = document.getElementById("user-input");
-        // this.prompts = input.value.split(",")
         this.prompts = prompts;
         if(this.interval !== undefined){
             clearInterval(this.interval);
