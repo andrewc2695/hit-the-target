@@ -19,15 +19,21 @@ class GameView{
         this.scoreInterval = undefined
         this.score = 0
         this.prompts = [];
+        this.currentLevel = 1;
     }
 
     preview(){
         document.getElementById("game-canvas").removeEventListener("click", callPreview);
         this.game.addObject();
-        this.previewInterval = setInterval(() => {
-            this.drawScore();
-            this.game.draw(this.ctx);
-        }, 25)
+        this.drawLevel();
+        setTimeout(() => {
+            this.ctx.clearRect(0, 0, 600, 1000);
+            this.previewInterval = setInterval(() => {
+
+                this.drawScore();
+                this.game.draw(this.ctx);
+            }, 25)
+        }, 1500);
     }
 
     start(){
@@ -112,6 +118,18 @@ class GameView{
         ctx.fillStyle = "#54FADB";
         ctx.textAlign = "center";
         ctx.fillText(this.score, 100, 62)
+    }
+
+    drawLevel(){
+        let ctx = this.ctx;
+        ctx.clearRect(0, 0, 600, 1000);
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, 1000, 600);
+        ctx.font = "30px Comic Sans MS";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.fillText(`Level ${this.currentLevel}`, 500, 150);
+        ctx.fillText(`Level ${this.game.level[this.currentLevel].title}`, 500, 300);
     }
 
 

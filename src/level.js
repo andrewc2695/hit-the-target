@@ -43,6 +43,7 @@ const level = {
         goal: { pos: [920, 265], vel: [0, 0], color:'#ff0000', height: 75, width: 39},
         coins: [{ pos: [500, 270], vel: [0, 0], color: '#FFFF00', height: 60, width: 60}],
         energyBalls: [],
+        title: "Pretty Easy"
     },
 }
 
