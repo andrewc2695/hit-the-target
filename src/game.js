@@ -80,16 +80,17 @@ class Game {
                 let objWidth = obj.width;
                 let objHeight = obj.height;
                 if(this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
-                this.betweenHeight(userPos[1], obj.pos[1],obj.pos[1] + objHeight)){
+                this.betweenHeight(userPos[1], obj.pos[1] + 5,obj.pos[1] + objHeight)){
                     let vel = this.userObject[0].vel
+                    debugger
                     if(vel[0] > 0){
-                        this.userObject[0].pos[0] = userPos[0] - 1;
+                        this.userObject[0].pos[0] = userPos[0] - 5;
                     }else if(vel[0] < 0){
-                        this.userObject[0].pos[0] = userPos[0] + 1;
+                        this.userObject[0].pos[0] = userPos[0] + 5;
                     }else if(vel[1] > 0){
-                        this.userObject[0].pos[1] = userPos[1] - 1;
+                        this.userObject[0].pos[1] = userPos[1] - 5;
                     }else if(vel[1] < 0){
-                        this.userObject[0].pos[1] = userPos[1] + 1;
+                        this.userObject[0].pos[1] = userPos[1] + 5;
                     }
                     this.userObject[0].vel = [0, 0];
                 }
@@ -130,7 +131,6 @@ class Game {
     }
 
     outOfBounds(){
-        debugger
         let position = this.userObject[0].pos;
         if(position[0] >= Game.DIM_X || position[1] >= Game.DIM_Y - 60){
             return true;
