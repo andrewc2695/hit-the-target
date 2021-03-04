@@ -51,6 +51,11 @@ class GameView{
         this.game.reset()
         if(this.scoreInterval) clearInterval(this.scoreInterval);
         if(this.previewInterval) clearInterval(this.previewInterval);
+        if(this.previousLevel < this.currentLevel){
+            this.previousLevel += 1;
+        }else{
+            this.score = 0;
+        }
         this.gameState = true;
         this.scoreInterval = setInterval(() => {
                 this.score += 5
