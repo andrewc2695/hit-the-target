@@ -51,10 +51,14 @@ class Game {
         //     prompts: prompts,
         // });
         // this.userObject = uo
-        this.userObject[0].readPrompts(0, prompts);
+        // this.userObject[0].readPrompts(0, prompts);
         // this.gameOver = false;
         // return uo
         console.log(this.coins);
+    }
+
+    readPrompts(prompts){
+        this.userObject[0].readPrompts(0, prompts);
     }
 
     allObjects(){
@@ -126,6 +130,7 @@ class Game {
     }
 
     outOfBounds(){
+        debugger
         let position = this.userObject[0].pos;
         if(position[0] >= Game.DIM_X || position[1] >= Game.DIM_Y - 60){
             return true;

@@ -28,7 +28,6 @@ class UserObject extends MovingObject{
     }
 
     readPrompts(n, prompts) {
-        debugger
         let promptArr = prompts[n]
         let newVel = [];
         if (promptArr[0] === "left") {

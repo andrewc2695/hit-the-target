@@ -9,12 +9,23 @@ class GameView{
         this.scoreCtx = scoreCtx;
         this.gameState = false;
         this.interval = undefined;
+        this.previewInterval = undefined
         this.scoreInterval = undefined
         this.score = 0
+        this.prompts = [];
+    }
+
+    preview(){
+        this.game.addObject();
+        this.previewInterval = setInterval(() => {
+            this.game.draw(this.ctx);
+        }, 25)
     }
 
     start(){
+        this.game.reset()
         if(this.scoreInterval) clearInterval(this.scoreInterval);
+        if(this.previewInterval) clearInterval(this.previewInterval);
         this.score = 0;
         this.gameState = true;
         this.scoreInterval = setInterval(() => {
@@ -22,9 +33,9 @@ class GameView{
                 this.drawScore();
         }, 100)
         this.game.reset(this.ctx);
-        this.game.addObject(this.prompts);
+        this.game.addObject();
+        this.game.readPrompts(this.prompts);
         this.interval = setInterval(() => {
-            console.log(this.score);
             this.game.draw(this.ctx);
             this.game.moveObject();
             if(this.game.outOfBounds()){
@@ -68,6 +79,10 @@ class GameView{
             clearInterval(this.interval);
         }
         this.start();
+    }
+
+    drawTitle(){
+        
     }
 
     drawScore(){
