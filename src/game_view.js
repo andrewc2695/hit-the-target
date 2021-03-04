@@ -23,13 +23,13 @@ class GameView{
     }
 
     preview(){
+        this.game.currentLevel = this.currentLevel;
         document.getElementById("game-canvas").removeEventListener("click", callPreview);
-        this.game.addObject();
         this.drawLevel();
+        this.game.addObject();
         setTimeout(() => {
             this.ctx.clearRect(0, 0, 600, 1000);
             this.previewInterval = setInterval(() => {
-
                 this.drawScore();
                 this.game.draw(this.ctx);
             }, 25)
@@ -40,7 +40,6 @@ class GameView{
         this.game.reset()
         if(this.scoreInterval) clearInterval(this.scoreInterval);
         if(this.previewInterval) clearInterval(this.previewInterval);
-        this.score = 0;
         this.gameState = true;
         this.scoreInterval = setInterval(() => {
                 this.score += 5
@@ -78,9 +77,18 @@ class GameView{
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
         if(state === "won"){
+            clearInterval(this.scoreInterval)
+            this.currentLevel = 2
             ctx.fillText("Level Completed!", Game.DIM_X / 2, Game.DIM_Y / 2);
+            this.game.reset()
+            setTimeout(() => {
+                console.log("hi")
+                this.ctx.clearRect(0, 0, 600, 1000);
+                this.preview();
+            }, 1500);
         }else{
             clearInterval(this.scoreInterval)
+            this.score = 0
             ctx.fillText("Level Failed!", Game.DIM_X / 2, Game.DIM_Y / 2);
         }
     }
@@ -121,6 +129,7 @@ class GameView{
     }
 
     drawLevel(){
+        // console.log("hi")
         let ctx = this.ctx;
         ctx.clearRect(0, 0, 600, 1000);
         ctx.fillStyle = "#000000";
@@ -129,7 +138,7 @@ class GameView{
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
         ctx.fillText(`Level ${this.currentLevel}`, 500, 150);
-        ctx.fillText(`Level ${this.game.level[this.currentLevel].title}`, 500, 300);
+        ctx.fillText(`${this.game.level[this.currentLevel].title}`, 500, 300);
     }
 
 
