@@ -74,9 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     removeLast = () => {
         if(inputArr.length !== 0){
-            inputList.removeChild(inputList.childNodes[inputArr.length -1]);
+            inputList.removeChild(inputList.childNodes[inputArr.length]);
             inputArr.pop();
-            console.log(inputArr);
         }else{
             clearAll();
         }
