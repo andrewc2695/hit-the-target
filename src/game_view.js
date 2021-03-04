@@ -20,6 +20,7 @@ class GameView{
         this.score = 0;
         this.prompts = [];
         this.currentLevel = 1;
+        this.previousLevel = 0;
         document.getElementById("instructions").addEventListener("click", () => this.changeId())
         document.getElementsByClassName("modal")[0].addEventListener("click", () => this.changeId())
     }
@@ -116,7 +117,6 @@ class GameView{
     }
 
     getUserInput(prompts){
-
         if(prompts.length !== 0){
             this.prompts = prompts;
             if(this.interval !== undefined){
