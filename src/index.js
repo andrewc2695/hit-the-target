@@ -46,7 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("remove-last").addEventListener("click", () => removeLast());
 
-    document.getElementById("start").addEventListener("click", () => gv.getUserInput(inputArr))
+    document.getElementById("start").addEventListener("click", () => getUserInput());
+
+    getUserInput = () => {
+        gv.getUserInput(inputArr);
+        inputArr = [];
+    }
 
     addLi = (ele) => {
         let time = document.getElementById("time");
