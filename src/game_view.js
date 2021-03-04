@@ -2,6 +2,12 @@ const Game = require('./game.js');
 const Goal = require('./goal.js');
 const Wall = require('./wall.js');
 
+let that = ""
+
+function callPreview() {
+    that.preview()
+}
+
 class GameView{
     constructor(ctx, game, scoreCtx){
         this.ctx = ctx;
@@ -16,8 +22,10 @@ class GameView{
     }
 
     preview(){
+        document.getElementById("game-canvas").removeEventListener("click", callPreview);
         this.game.addObject();
         this.previewInterval = setInterval(() => {
+            this.drawScore();
             this.game.draw(this.ctx);
         }, 25)
     }
@@ -82,7 +90,17 @@ class GameView{
     }
 
     drawTitle(){
-        
+        let ctx = this.ctx;
+        that = this;
+        document.getElementById("game-canvas").addEventListener("click", callPreview)
+        ctx.clearRect(0, 0, 600, 1000);
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, 1000, 600);
+        ctx.font = "30px Comic Sans MS";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.fillText("Hit The Target click to start", 500, 300);
+        this.drawScore()
     }
 
     drawScore(){
@@ -91,9 +109,9 @@ class GameView{
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, 200, 150);
         ctx.font = "30px Comic Sans MS";
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "#54FADB";
         ctx.textAlign = "center";
-        ctx.fillText(this.score, 100, 75)
+        ctx.fillText(this.score, 100, 62)
     }
 
 

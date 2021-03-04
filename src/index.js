@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreCanvas.height = 100;
 
     const gv = new GameView(ctx, game, scoreCtx);
-    gv.preview();
+    gv.drawTitle();
     // gv.game.addObject(this.prompts);
     // gv.game.draw(ctx);
 
