@@ -13,6 +13,14 @@
     color: #54FADB;
     font-size: 30px;
     weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#top-right{
+    display: flex;
+    align-items: flex-end;
 }
 
 #game-canvas{
@@ -63,4 +71,9 @@
 #inputs{
     max-height: 190px;
     overflow: scroll;
+}
+
+#instructions{
+    width: max-content;
+    height: 50px;
 }

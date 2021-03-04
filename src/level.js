@@ -2,9 +2,7 @@ const level = {
     1: {
         userObject: {
             pos: [10, 265],
-            vel: [ 1, 0],
-            radius: 5,
-            color: "#FFFFFF",
+            vel: [ 5, 0],
         },
         walls: [{ pos: [0, 165], vel: [0, 0], color: "#964B00", height: 60, width: 60 }, 
         { pos: [60, 165], vel: [0, 0], color: "#964B00", height: 60, width: 60 },
@@ -48,17 +46,34 @@ const level = {
     2: {
         userObject: {
             pos: [10, 520],
-            vel: [1, 0],
-            radius: 5,
-            color: "#FFFFFF",
+            vel: [5, 0],
         },
         walls: [{pos: [940, 540], vel: [0, 0], color: "#964B00", height: 60, width: 60 },
                 { pos: [940, 480], vel: [0, 0], color: "#964B00", height: 60, width: 60 }],
         goal: { pos: [900, 10], vel: [0, 0], color: '#ff0000', height: 75, width: 39 },
         coins: [{ pos: [150, 155], vel: [0, 0], color: '#FFFF00', height: 60, width: 60 }],
         energyBalls: [],
-        title: "Avoid The Energy Spheres"
+        title: "Dont Touch the Edges"
+    },
+
+    3: {
+        userObject: {
+            pos: [940, 265],
+            vel: [5, 0],
+        },
+        walls: [{pos: [940, 0], vel: [0, 0], height: 60, width: 60},
+                {pos: [940, 540], vel: [0, 0], height: 60, width: 60 }],
+        goal: { pos: [10, 265], vel: [0, 0], color: '#ff0000', height: 75, width: 39 },
+        coins: [{ pos: [880, 0], vel: [0, 0], height: 60, width: 60 },
+            { pos: [880, 540], vel: [0, 0], height: 60, width: 60 }],
+        energyBalls: [{ pos: [200, 265], vel: [0, 0], height: 60, width: 60 },
+                    { pos: [200, 235], vel: [0, 0], height: 60, width: 60 },
+                    { pos: [200, 295], vel: [0, 0], height: 60, width: 60 },
+                    { pos: [200, 325], vel: [0, 0], height: 60, width: 60 },
+                    { pos: [200, 205], vel: [0, 0], height: 60, width: 60 }],
+        title: "Avoid the Energy Spheres"
     }
+
 }
 
 //energyBalls: [{ pos: [600, 30], vel: [0, 0], color: '#0000FF', height: 60, width: 60 }],

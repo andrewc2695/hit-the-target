@@ -19,7 +19,7 @@ class GameView{
         this.scoreInterval = undefined
         this.score = 0
         this.prompts = [];
-        this.currentLevel = 2;
+        this.currentLevel = 1;
     }
 
     preview(){
@@ -77,18 +77,17 @@ class GameView{
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
         if(state === "won"){
-            clearInterval(this.scoreInterval)
-            this.currentLevel = 2
+            clearInterval(this.scoreInterval);
+            this.currentLevel++;
             ctx.fillText("Level Completed!", Game.DIM_X / 2, Game.DIM_Y / 2);
-            this.game.reset()
+            this.game.reset();
             setTimeout(() => {
-                console.log("hi")
                 this.ctx.clearRect(0, 0, 600, 1000);
                 this.preview();
             }, 1500);
         }else{
-            clearInterval(this.scoreInterval)
-            this.score = 0
+            clearInterval(this.scoreInterval);
+            this.score = 0;
             ctx.fillText("Level Failed!", Game.DIM_X / 2, Game.DIM_Y / 2);
         }
     }

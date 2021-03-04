@@ -7,8 +7,6 @@ class MovingObject {
         this.vel = [];
         this.vel.push(variables.vel[0])
         this.vel.push(variables.vel[1])
-        this.radius = variables.radius;
-        this.color = variables.color;
         this.height = variables.height;
         this.width = variables.width;
     }
