@@ -15,7 +15,7 @@
   \*********************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\nclass Coin extends MovingObject{\n    constructor(variables){\n        super(variables)\n    }\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n        ctx.beginPath();\n        ctx.rect(this.pos[0], this.pos[1], this.width, this.height)\n        ctx.fill();\n    }\n}\n\nmodule.exports = Coin;\n\n//# sourceURL=webpack:///./src/coin.js?");
+eval("const MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\nclass Coin extends MovingObject{\n    constructor(variables){\n        super(variables)\n        this.img = new Image();\n        this.img.src = \"../img/coin.png\"\n    }\n\n    draw(ctx) {\n        // ctx.fillStyle = this.color;\n        // ctx.beginPath();\n        // ctx.rect(this.pos[0], this.pos[1], this.width, this.height)\n        // ctx.fill();\n        ctx.drawImage(this.img, this.pos[0], this.pos[1], this.width, this.height);\n\n    }\n}\n\nmodule.exports = Coin;\n\n//# sourceURL=webpack:///./src/coin.js?");
 
 /***/ }),
 
@@ -75,7 +75,7 @@ eval("console.log(\"webpack is working\")\n//down 1000,right 1000,left 1000,up 1
   \**********************/
 /***/ ((module) => {
 
-eval("const level = {\n    1: {\n        userObject: {\n            pos: [30, 30],\n            vel: [ 1, 0],\n            radius: 5,\n            color: \"#FFFFFF\",\n        },\n        walls: [{ pos: [200, 200], vel: [0, 0], color: \"#964B00\", height: 60, width: 20}],\n        goal: { pos: [920, 75], vel: [0, 0], color:'#ff0000', height: 75, width: 39},\n        energyBalls: [{ pos: [600, 30], vel: [0, 0], color: '#0000FF', height: 60, width: 60}],\n        coins: [{ pos: [500, 30], vel: [0, 0], color: '#FFFF00', height: 15, width: 15}]\n    },\n}\n\n\n\n\n\nmodule.exports = level;\n\n//# sourceURL=webpack:///./src/level.js?");
+eval("const level = {\n    1: {\n        userObject: {\n            pos: [30, 30],\n            vel: [ 1, 0],\n            radius: 5,\n            color: \"#FFFFFF\",\n        },\n        walls: [{ pos: [200, 200], vel: [0, 0], color: \"#964B00\", height: 60, width: 20}],\n        goal: { pos: [920, 75], vel: [0, 0], color:'#ff0000', height: 75, width: 39},\n        energyBalls: [{ pos: [600, 30], vel: [0, 0], color: '#0000FF', height: 60, width: 60}],\n        coins: [{ pos: [500, 30], vel: [0, 0], color: '#FFFF00', height: 60, width: 60}]\n    },\n}\n\n\n\n\n\nmodule.exports = level;\n\n//# sourceURL=webpack:///./src/level.js?");
 
 /***/ }),
 
@@ -115,7 +115,7 @@ eval("const Util = {\n    inherits(ChildClass, ParentClass) {\n        ChildClas
   \*********************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\")\nconst Util = __webpack_require__(/*! ./util.js */ \"./src/util.js\");\n\nclass Wall extends MovingObject {\n    constructor(variables) {\n        super(variables)\n        \n    }\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n        ctx.beginPath();\n        ctx.rect(this.pos[0], this.pos[1], this.width, this.height)\n        ctx.fill();\n    }\n\n}\n\nmodule.exports = Wall;\n\n//# sourceURL=webpack:///./src/wall.js?");
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\")\nconst Util = __webpack_require__(/*! ./util.js */ \"./src/util.js\");\n\nclass Wall extends MovingObject {\n    constructor(variables) {\n        super(variables)\n        this.img = new Image();\n        this.img.src = \"../img/wall.png\"\n    }\n\n    draw(ctx) {\n        // ctx.fillStyle = this.color;\n        // ctx.beginPath();\n        // ctx.rect(this.pos[0], this.pos[1], this.width, this.height)\n        // ctx.fill();\n        ctx.drawImage(this.img, this.pos[0], this.pos[1], this.width, this.height);\n    }\n\n}\n\nmodule.exports = Wall;\n\n//# sourceURL=webpack:///./src/wall.js?");
 
 /***/ })
 
