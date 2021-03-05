@@ -72,13 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     clearAll = () => {
-        inputList.innerHTML = "";
-        inputArr = [];
+        while(inputList.firstChild){
+            inputList.removeChild(inputList.firstChild);
+        }
     }
 
     removeLast = () => {
         if(inputArr.length !== 0){
-            inputList.removeChild(inputList.childNodes[inputArr.length]);
+            inputList.removeChild(inputList.lastChild);
             inputArr.pop();
         }else{
             clearAll();

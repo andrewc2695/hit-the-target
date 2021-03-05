@@ -126,6 +126,34 @@ const level = {
                     { pos: [290, 370], vel: [0, 0], height: 60, width: 60 }],
         goal: { pos: [200, 270], vel: [0, 0], height: 75, width: 39},
         title: "Risk It For the Biscuit"
+    },
+    5: {
+        userObject: {
+            pos: [500, 10],
+            vel: [5, 0]
+        },
+        walls: [{ pos: [700, 0], vel: [0, 0], height: 60, width: 60 },
+                { pos: [700, 60], vel: [0, 0], height: 60, width: 60 },
+                { pos: [700, 120], vel: [0, 0], height: 60, width: 60 },
+                { pos: [760, 0], vel: [0, 0], height: 60, width: 60 },
+                { pos: [820, 0], vel: [0, 0], height: 60, width: 60 },
+                { pos: [880, 0], vel: [0, 0], height: 60, width: 60 },
+                { pos: [940, 0], vel: [0, 0], height: 60, width: 60 },
+                { pos: [940, 60], vel: [0, 0], height: 60, width: 60 },
+                { pos: [940, 120], vel: [0, 0], height: 60, width: 60 },
+                { pos: [180, 205], vel: [0, 0], height: 60, width: 60 },
+                { pos: [120, 205], vel: [0, 0], height: 60, width: 60 },
+                { pos: [60, 205], vel: [0, 0], height: 60, width: 60 },
+                { pos: [0, 205], vel: [0, 0], height: 60, width: 60 },
+                { pos: [240, 205], vel: [0, 0], height: 60, width: 60 }],
+        coins: [{ pos: [760, 60], vel: [0, 0], height: 60, width: 60 },
+                { pos: [820, 60], vel: [0, 0], height: 60, width: 60 },
+                { pos: [880, 60], vel: [0, 0], height: 60, width: 60 }],
+        energyBalls: [{ pos: [500, 350], vel: [0, -3], height: 60, width: 60, track: 1950 },
+                      { pos: [500, 270], vel: [-3, 0], height: 60, width: 60, track: 4500 },
+                    {pos: [870, 165], vel: [2, 0], height: 60, width: 60, track: 2000} ],
+        goal: { pos: [200, 270], vel: [0, 0], height: 75, width: 39 },
+        title: "They Can Move?"
     }
 
 }

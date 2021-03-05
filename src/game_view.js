@@ -19,7 +19,7 @@ class GameView{
         this.scoreInterval = undefined;
         this.score = 0;
         this.prompts = [];
-        this.currentLevel = 4;
+        this.currentLevel = 1;
         this.previousLevel = 0;
         document.getElementById("instructions").addEventListener("click", () => this.changeId())
         document.getElementsByClassName("modal")[0].addEventListener("click", () => this.changeId())
@@ -43,12 +43,12 @@ class GameView{
             this.previewInterval = setInterval(() => {
                 this.drawScore();
                 this.game.draw(this.ctx);
+                this.game.previewMove();
             }, 25)
         }, 1500);
     }
 
     start(){
-        this.game.reset()
         if(this.scoreInterval) clearInterval(this.scoreInterval);
         if(this.previewInterval) clearInterval(this.previewInterval);
         if(this.previousLevel < this.currentLevel){
@@ -62,8 +62,6 @@ class GameView{
                 this.score += 5
                 this.drawScore();
         }, 100)
-        this.game.reset(this.ctx);
-        this.game.addObject();
         this.game.readPrompts(this.prompts);
         this.interval = setInterval(() => {
             this.game.draw(this.ctx);

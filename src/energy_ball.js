@@ -23,6 +23,17 @@ class EnergyBall extends MovingObject{
                 this.currentImg = this.eng1
             }
         },150)
+        this.trackNum = variables.track;
+        if(this.trackNum !== undefined){
+            this.track()
+        }
+    }
+
+    track(){
+        setInterval(() => {
+            this.vel[0] = this.vel[0] * -1;
+            this.vel[1] = this.vel[1] * -1;
+        }, this.trackNum);
     }
 
     draw(ctx) {

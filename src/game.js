@@ -71,6 +71,12 @@ class Game {
         })
     }
 
+    previewMove(){
+        this.allObjects().slice(1).forEach(object => {
+            object.move();
+        })
+    }
+
     checkCollisions(){
        if(this.userObject.length ===0) return
        debugger;
