@@ -92,8 +92,6 @@ class GameView{
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = Game.BG_COLOR;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        // console.log(this.game.userObject)
-        // this.game.userObject[0].pos = [3000, 3000];
         if(state === "won"){
             clearInterval(this.scoreInterval);
             this.currentLevel++;

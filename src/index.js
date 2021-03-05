@@ -1,6 +1,3 @@
-console.log("webpack is working")
-//down 1000,right 1000,left 1000,up 1000,right 1000
-
 const MovingObject = require("./moving_object.js")
 const Game = require("./game.js")
 const GameView = require("./game_view.js")
@@ -22,9 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gv = new GameView(ctx, game, scoreCtx);
     gv.drawTitle();
-    // gv.game.addObject(this.prompts);
-    // gv.game.draw(ctx);
-
 
     const inputList = document.getElementById("inputs");
 
@@ -59,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
         inputArr.push(subArr);
         li.appendChild(document.createTextNode(`${ele}, ${time.value}`))
         inputList.appendChild(li)
-        console.log(inputArr);
     }
 
     handleClick = (dir, str) => {

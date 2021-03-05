@@ -28,9 +28,6 @@ class Game {
     }
 
     addObject(prompts){
-        // this.level.walls.forEach( wall => {
-        //     this.walls.push(new Wall(wall))
-        // });
         let a = new UserObject(this.level[this.currentLevel].userObject)
         this.userObject.push(a);
         this.level[this.currentLevel].walls.forEach(wall => {
@@ -43,18 +40,6 @@ class Game {
             this.coins.push(new Coin(coin));
         });
         this.goal.push(new Goal(this.level[this.currentLevel].goal));
-        // const uo = new UserObject({
-        //     pos: [30, 30],
-        //     vel: [ 1, 0],
-        //     radius: 5,
-        //     color: "#FFFFFF",
-        //     prompts: prompts,
-        // });
-        // this.userObject = uo
-        // this.userObject[0].readPrompts(0, prompts);
-        // this.gameOver = false;
-        // return uo
-        console.log(this.coins);
     }
 
     readPrompts(prompts){
@@ -149,9 +134,6 @@ class Game {
     }
 
     draw(ctx) {
-        // ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        // ctx.fillStyle = Game.BG_COLOR;
-        // ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.drawImage(this.bgImage, 0, 0, Game.DIM_X, Game.DIM_Y)
         this.allObjects().forEach((object) => {
             object.draw(ctx);
