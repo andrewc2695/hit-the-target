@@ -67,9 +67,9 @@ class Game {
        let userPos = this.userObject[0].pos
        for(let i = 0; i < objects.length; i++){
            let obj = objects[i];
+           let objWidth = obj.width;
+           let objHeight = obj.height;
             if(objects[i] instanceof Wall){
-                let objWidth = obj.width;
-                let objHeight = obj.height;
                 if(this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
                 this.betweenHeight(userPos[1], obj.pos[1] + 5,obj.pos[1] + objHeight)){
                     let vel = this.userObject[0].vel
@@ -85,22 +85,16 @@ class Game {
                     this.userObject[0].vel = [0, 0];
                 }
             }else if(objects[i] instanceof Goal){
-                let objWidth = obj.width;
-                let objHeight = obj.height;
                 if (this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
                     this.betweenHeight(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
                         return[true, "won"];
                     }
             }else if(objects[i] instanceof EnergyBall){
-                let objWidth = obj.width;
-                let objHeight = obj.height;
                 if (this.betweenWidth(userPos[0], obj.pos[0] + 25, obj.pos[0] -25 + objWidth) &&
                     this.betweenHeight(userPos[1], obj.pos[1] + 25, obj.pos[1] -25 + objHeight)) {
                     return([true, "lost"]);
                 }
             }else if(objects[i] instanceof Coin){
-                let objWidth = obj.width;
-                let objHeight = obj.height;
                 if (this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) &&
                     this.betweenHeight(userPos[1], obj.pos[1], obj.pos[1] + objHeight)) {
                     objects[i].pos = [2000, 2000];
