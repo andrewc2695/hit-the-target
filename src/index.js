@@ -47,12 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     addLi = (ele) => {
-        let time = document.getElementById("time");
-        let li = document.createElement("li");
-        let subArr = [ele, time.value]
-        inputArr.push(subArr);
-        li.appendChild(document.createTextNode(`${ele}, ${time.value}`))
-        inputList.appendChild(li)
+        if(ele !== ""){
+            let time = document.getElementById("time");
+            let li = document.createElement("li");
+            let subArr = [ele, time.value]
+            inputArr.push(subArr);
+            li.appendChild(document.createTextNode(`${ele}, ${time.value}`))
+            inputList.appendChild(li)
+        }
     }
 
     handleClick = (dir, str) => {

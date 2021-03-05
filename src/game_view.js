@@ -125,14 +125,16 @@ class GameView{
             if(this.interval !== undefined){
                 clearInterval(this.interval);
             }
-            this.start();
+            if (this.interval !== undefined || this.previewInterval !== undefined){
+                this.start();
+            }
         }
     }
 
     drawTitle(){
         let ctx = this.ctx;
         that = this;
-        document.getElementById("game-canvas").addEventListener("click", callPreview)
+        document.getElementById("game-canvas").addEventListener("click", callPreview);
         ctx.clearRect(0, 0, 600, 1000);
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, 1000, 600);
