@@ -83,41 +83,35 @@ class GameView{
     };
 
     gameWon(state){
-        document.getElementById("inputs").innerHTML = "";
+        let inputs = document.getElementById("inputs");
+        while (inputs.firstChild) {
+                inputs.removeChild(inputs.firstChild);
+            }
         while(this.prompts.length > 0){
             this.prompts.pop();
         }
+        this.game.reset();
         this.gameState = false;
+        clearInterval(this.scoreInterval);
         let ctx = this.ctx;
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = Game.BG_COLOR;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+        ctx.font = "30px Copperplate";
+        ctx.fillStyle = "#54FADB";
+        ctx.textAlign = "center";
         if(state === "won"){
-            clearInterval(this.scoreInterval);
             this.currentLevel++;
-            ctx.font = "30px Copperplate";
-            ctx.fillStyle = "#54FADB";
-            ctx.textAlign = "center";
             ctx.fillText("Level Completed!", Game.DIM_X / 2, Game.DIM_Y / 2);
-            this.game.reset();
-            setTimeout(() => {
-                this.ctx.clearRect(0, 0, 600, 1000);
-                this.preview();
-            }, 1500);
         }else{
-            clearInterval(this.scoreInterval);
             this.score = 0;
-            ctx.font = "30px Copperplate";
-            ctx.fillStyle = "#54FADB";
-            ctx.textAlign = "center";
             ctx.fillText("Level Failed!", Game.DIM_X / 2, Game.DIM_Y / 2);
             this.currentLevel = 1;
-            this.game.reset();
-            setTimeout(() => {
-                this.ctx.clearRect(0, 0, 600, 1000);
-                this.preview()
-            }, 1500);
         }
+        setTimeout(() => {
+            this.ctx.clearRect(0, 0, 600, 1000);
+            this.preview();
+        }, 1500);
     }
 
     getUserInput(prompts){
