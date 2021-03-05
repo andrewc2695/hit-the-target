@@ -19,7 +19,7 @@ class GameView{
         this.scoreInterval = undefined;
         this.score = 0;
         this.prompts = [];
-        this.currentLevel = 1;
+        this.currentLevel = 4;
         this.previousLevel = 0;
         document.getElementById("instructions").addEventListener("click", () => this.changeId())
         document.getElementsByClassName("modal")[0].addEventListener("click", () => this.changeId())
@@ -58,6 +58,7 @@ class GameView{
         }
         this.gameState = true;
         this.scoreInterval = setInterval(() => {
+            if (this.game.userObject[0].vel[0] !== 0 || this.game.userObject[0].vel[1] !== 0)
                 this.score += 5
                 this.drawScore();
         }, 100)
