@@ -8,12 +8,7 @@ class Coin extends MovingObject{
     }
 
     draw(ctx) {
-        // ctx.fillStyle = this.color;
-        // ctx.beginPath();
-        // ctx.rect(this.pos[0], this.pos[1], this.width, this.height)
-        // ctx.fill();
         ctx.drawImage(this.img, this.pos[0], this.pos[1], this.width, this.height);
-
     }
 }
 
