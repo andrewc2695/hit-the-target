@@ -19,7 +19,7 @@ class Game {
         this.bgImage.src = "../img/floor.png";
     }
     
-    reset(ctx){
+    reset(){
         this.walls = [];
         this.userObject = [];
         this.energyBalls = [];
@@ -27,9 +27,8 @@ class Game {
         this.coins = [];
     }
 
-    addObject(prompts){
-        let a = new UserObject(this.level[this.currentLevel].userObject)
-        this.userObject.push(a);
+    addObject(){
+        this.userObject.push(new UserObject(this.level[this.currentLevel].userObject));
         this.level[this.currentLevel].walls.forEach(wall => {
             this.walls.push(new Wall(wall));
         });
@@ -64,7 +63,6 @@ class Game {
 
     checkCollisions(){
        if(this.userObject.length ===0) return
-       debugger;
        const objects = this.allObjects().slice(1)
        let userPos = this.userObject[0].pos
        for(let i = 0; i < objects.length; i++){
@@ -75,7 +73,6 @@ class Game {
                 if(this.betweenWidth(userPos[0], obj.pos[0], obj.pos[0] + objWidth) && 
                 this.betweenHeight(userPos[1], obj.pos[1] + 5,obj.pos[1] + objHeight)){
                     let vel = this.userObject[0].vel
-                    debugger
                     if(vel[0] > 0){
                         this.userObject[0].pos[0] = userPos[0] - 5;
                     }else if(vel[0] < 0){

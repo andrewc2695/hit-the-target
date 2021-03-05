@@ -49,6 +49,11 @@ class GameView{
     }
 
     start(){
+        if(this.gameState){
+            this.game.reset();
+            this.game.addObject();
+        }
+        this.gameState = true;
         if(this.scoreInterval) clearInterval(this.scoreInterval);
         if(this.previewInterval) clearInterval(this.previewInterval);
         if(this.previousLevel < this.currentLevel){
@@ -144,7 +149,7 @@ class GameView{
         ctx.clearRect(0, 0, 200, 150);
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, 200, 150);
-        ctx.font = "30px Comic Sans MS";
+        ctx.font = "30px Copperplate";
         ctx.fillStyle = "#54FADB";
         ctx.textAlign = "center";
         ctx.fillText(this.score, 100, 62)
