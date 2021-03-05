@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getUserInput = () => {
         gv.getUserInput(inputArr);
-        inputArr = [];
     }
 
     addLi = (ele) => {
